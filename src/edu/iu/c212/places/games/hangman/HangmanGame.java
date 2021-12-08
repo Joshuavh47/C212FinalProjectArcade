@@ -11,7 +11,9 @@ import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 import edu.iu.c212.places.Place;
 import edu.iu.c212.places.games.Game;
+import edu.iu.c212.utils.http.HttpUtils;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -27,20 +29,20 @@ public class HangmanGame extends Game implements IHangmanGame{
     int numWrongGuesses = 0;
     //Arcade arcade;
 
-    public HangmanGame(String name, Arcade playTime, double cost){
+    public HangmanGame(String name, Arcade playTime, double cost) {
         super(name, playTime, cost);
         this.player = playTime.currentUser;
         //this.arcade = Hangman.class.playtime;
         // add random word generator
-        word = "Jackson";//HttpUtils.getRandomHangmanWord;
         letters = new ArrayList<Character>();
         guesses = new ArrayList<Character>();
         createLetterList();
 
     }
     @Override
-    public void onEnter(User user){
+    public void onEnter(User user) throws IOException {
         User player = user;
+        word = HttpUtils.getRandomHangmanWord();
         //User player = new User("John-Herron",100,null);
         // get hangman game from arcade list of places
         int indexOfGame = arcade.findPlace("Hangman");

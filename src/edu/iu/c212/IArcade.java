@@ -22,7 +22,7 @@ public interface  IArcade {
 //program if an exception is thrown.
     void saveUsersToFile() throws IOException;
 //- This should call FileUtils.writeUserDataToFile to write all users to the txt file
-    void transitionArcadeState(String newPlaceNameToGoTo);
+    void transitionArcadeState(String newPlaceNameToGoTo) throws IOException;
 //- This should try to transition the currentUser to the new place.
 //- If the user doesn’t have enough money to go to the place, you should
 //print a warning to the user and transition to the lobby

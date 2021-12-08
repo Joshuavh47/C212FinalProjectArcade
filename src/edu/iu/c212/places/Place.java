@@ -9,6 +9,8 @@ package edu.iu.c212.places;
 import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 
+import java.io.IOException;
+
 /**
  *
  * @author johhe
@@ -24,7 +26,7 @@ public abstract class Place {
         this.entryFee = cost;
     }
 
-    public abstract void onEnter(User user);
+    public abstract void onEnter(User user) throws IOException;
     @Override
     public String toString(){
         boolean game = true;

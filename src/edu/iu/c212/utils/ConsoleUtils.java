@@ -11,14 +11,19 @@ public class ConsoleUtils {
      * This reads a line from the console using the scanner
      */
     public static String readLineFromConsole() {
+        String read = scanner.nextLine();
+        return read;
     }
 
     /**
      * This method will read a line from the user using readLineFromConsole. It will try to parse this to an integer, and invoke the condition.
      * If the condition returns false, or else if this is not an integer, it will print the failure message and ask the user to input again.
      */
-    public static int readIntegerLineFromConsoleOrElseComplainAndRetry(Function<Integer, Boolean> condition, String failureMessage) {
 
+    //Need to do this
+    public static int readIntegerLineFromConsoleOrElseComplainAndRetry(Function<Integer, Boolean> condition, String failureMessage) {
+        int re = 0;
+        return re;
     }
 
     /**

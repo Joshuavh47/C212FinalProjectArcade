@@ -1,8 +1,21 @@
 package edu.iu.c212;
 
-public class TriviaGame extends Game (edu.iu.c212.places.games.TriviaGame){
+import edu.iu.c212.models.User;
+import edu.iu.c212.places.games.Game;
 
-        }
+import java.io.IOException;
+
+public class TriviaGame extends Game{
+    public TriviaGame(String lobby, Arcade playTime, double cost) {
+        super(lobby, playTime, cost);
+    }
+
+    @Override
+    public void onEnter(User user) throws IOException {
+
+    }
+
+}
 //        The user will be guessing the answers to 5 randomly-generated trivia questions. They will get
 //        $2 for each correct answer. There will be no entry fee for this game.
 //        - @Override void onEnter(User user)

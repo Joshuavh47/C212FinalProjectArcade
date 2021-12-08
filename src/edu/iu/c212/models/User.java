@@ -54,5 +54,20 @@ public class User {
         this.inventory.remove(newItem);
         this.balance += balance;
     }
+    public String inventoryToString(){
+        if(this.inventory.size() == 0){
+            return "";
+        }
+        else{
+            String inv = "";
+            for(int i = 0; i < this.inventory.size(); i++){
+                inv += Item.valueOf(inventory.get(i).readableName);
+                inv += ",";
+            }
+            inv = inv.substring(0,inv.length()-1);
+            return inv;
+        }
+    }
 }
+
 
