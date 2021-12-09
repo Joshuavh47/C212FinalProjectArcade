@@ -41,14 +41,13 @@ public class HangmanGame extends Game implements IHangmanGame{
     }
     @Override
     public void onEnter(User user) throws IOException {
-        User player = user;
+
         word = HttpUtils.getRandomHangmanWord();
         //User player = new User("John-Herron",100,null);
         // get hangman game from arcade list of places
         int indexOfGame = arcade.findPlace("Hangman");
         Place game = arcade.allPlaces.get(indexOfGame);
         HangmanGame game1 = new HangmanGame(game.placeName, game.arcade, game.entryFee);
-
         System.out.println("Welcome to Hangman");
         System.out.println("Rules:");
         System.out.println("The entry fee for the game is $5");
@@ -56,7 +55,6 @@ public class HangmanGame extends Game implements IHangmanGame{
         System.out.println("If declared a winner, your prize is $15");
         System.out.println("Lets get started");
         System.out.println("______________________________________________________");
-
         boolean winner = false;
         while(winner == false){
             System.out.println("You've guesssed " + game1.getNumGuesses() + " times incorrectly " + game1.printGuesses());
