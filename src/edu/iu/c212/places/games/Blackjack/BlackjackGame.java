@@ -2,7 +2,7 @@ package edu.iu.c212.Blackjack;
 
 import java.util.Scanner;
 
-public class BlackjackGame {
+public class BlackjackGame extends Game {
     private BlackjackDealer dealer;
     private BlackjackPlayer player;
     private boolean stay=false;
