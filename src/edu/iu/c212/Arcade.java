@@ -41,13 +41,15 @@ public class Arcade implements IArcade{
     public User currentUser;
     public List<User> allUsers = new ArrayList<>(); // <User>
     public List<Place> allPlaces = new ArrayList<>(); // <places>
-    File userFile = new File("src/edu/iu/c212/users.txt");
+    //File userFile = new File("src/edu/iu/c212/users.txt");
         //src/edu/iu/c212/users.txt
     
     public Arcade() throws IOException{
         initializeAllPlaces(); // all places are initialized and places in list allPlaces
         getUserSaveDataFromFile(); // all users in user.txt are placed in list allUsers
         this.currentUser = getUserOnArcadeEntry(); // due to this, throw exception
+        this.allPlaces.get(0).onEnter(this.currentUser);
+
 
     }
     // why do we need this method ->
@@ -272,7 +274,7 @@ public class Arcade implements IArcade{
         String username = in.nextLine();
         // check if username is in allUsers list
         boolean usernameFound = false;
-        User foundUser = null; // null will be swapped with the found user if found
+        User foundUser = new User(); // null will be swapped with the found user if found
         for(int i = 0; i < this.allUsers.size(); i++) {
             if(this.allUsers.get(i).getUsername().equals(username)) {
                 usernameFound = true;

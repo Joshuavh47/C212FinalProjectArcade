@@ -25,6 +25,7 @@ public class User {
         this.balance = balance;
         this.inventory = inventory;
     }
+    public User(){}
 
     public void subtractBalance(double amount){
         if(amount > this.balance){

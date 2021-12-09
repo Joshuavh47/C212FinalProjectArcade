@@ -22,8 +22,13 @@ public class ConsoleUtils {
 
     //Need to do this
     public static int readIntegerLineFromConsoleOrElseComplainAndRetry(Function<Integer, Boolean> condition, String failureMessage) {
-        int re = 0;
-        return re;
+        String num = readLineFromConsole();
+        int num1 = Integer.parseInt(num);
+        if(!condition.apply(num1)){
+            System.out.println(failureMessage);
+            readIntegerLineFromConsoleOrElseComplainAndRetry(condition,failureMessage);
+        }
+        return num1;
     }
 
     /**
