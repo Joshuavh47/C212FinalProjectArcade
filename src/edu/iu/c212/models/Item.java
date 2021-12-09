@@ -28,7 +28,16 @@ public enum Item {
         this.readableName = readableName;
         this.value = value;
     }
-    
+
+//    @Override
+//    public String toString() {
+//        String output = this.readableName + ": "
+//        return
+//                "readableName='" + readableName + '\'' +
+//                ", value=" + value +
+//                '}';
+//    }
+
     public String showName(){
         return this.readableName;
     }

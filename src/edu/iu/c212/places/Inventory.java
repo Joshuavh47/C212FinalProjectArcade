@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -38,12 +39,28 @@ public class Inventory extends Place{
             System.out.println("Total net worth: " + arcade.currentUser.getBalance());
         }
         else{
+            Map<Item,Integer> quantity = new HashMap<Item,Integer>();
             double itemBalance = 0;
             for(int i = 0; i < usersItems.size(); i++){
-                System.out.println(Item.valueOf(usersItems.get(i).name()));
-                itemBalance += usersItems.get(i).showPrice();
+                //System.out.println(Item.valueOf(usersItems.get(i).name()) + " ");
+                // checks if item is in hashmap
+                if(quantity.containsKey(Item.valueOf(usersItems.get(i).name()))){
+                    // if it is then add one to quantity
+                    int quant = quantity.get(Item.valueOf(usersItems.get(i).name()));
+                    quantity.remove(Item.valueOf(usersItems.get(i).name()));
+                    quantity.put(Item.valueOf(usersItems.get(i).name()), quant + 1);
+                    itemBalance += usersItems.get(i).showPrice();
+                }
+                else{
+                    quantity.put(Item.valueOf(usersItems.get(i).name()), 1);
+                    itemBalance += usersItems.get(i).showPrice();
+                }
             }
-            System.out.println("Total net worth: " + arcade.currentUser.getBalance() + itemBalance);
+            for (Map.Entry<Item, Integer> i : quantity.entrySet()) {
+                System.out.println(i.getKey() + ": " + i.getValue() +" (value: " + i.getKey().showPrice() * i.getValue() + ")");
+            }
+            double totalBalance = arcade.currentUser.getBalance() + itemBalance;
+            System.out.println("Total net worth: " + totalBalance);
             if(usersItems.size() == 3){
                 System.out.println("REMEMBER! You can only have 3 items at a time. Sell one by going to the Store");
             }

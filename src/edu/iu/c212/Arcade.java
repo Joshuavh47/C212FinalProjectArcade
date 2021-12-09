@@ -109,30 +109,6 @@ public class Arcade implements IArcade{
         //getUserDataFromFile -> reads the user.txt file and returns all the users in a list
         this.allUsers = FileUtils.getUserDataFromFile();
         return this.allUsers;
-
-
-//        List<String> allUsersFromFile = FileUtils.readLines(this.userFile,
-//                    StandardCharsets.UTF_8.name());
-//        for(int i = 0; i< allUsersFromFile.size(); i++){
-//            List<Item> userItems = new ArrayList<Item>();
-//            String[] line = allUsersFromFile.get(i).split("|");
-//            // check if they have items
-//            if(line.length > 2){
-//                String[] itemNames = line[3].split(",");
-//                for(int j = 0; j < itemNames.length; j++){
-//                    // checks for the item in the item class
-//                        // method return item or return null
-//                        // either way it is added to the list of Items for the user
-//                    userItems.add(Item.checkForItem(itemNames[i]));
-//                }
-//                this.allUsers.add(new User(line[0], Double.parseDouble(line[1]), userItems));
-//            }
-//            else{
-//                this.allUsers.add(new User(line[0], Double.parseDouble(line[1]), null));
-//                // user has no items
-//            }
-//        }
-//        return this.allUsers;
     }
 
     /**
@@ -145,40 +121,6 @@ public class Arcade implements IArcade{
     public void saveUsersToFile() throws IOException {
         writeUserDataToFile(this.allUsers);
     }
-
-//        BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/students.txt"));
-//        for(int i = 0; i < this.allUsers.size(); i++){
-//            String name = this.allUsers.get(i).getUsername();
-//            double balance = this.allUsers.get(i).getBalance();
-//            String items = "";
-//            if(this.allUsers.get(i).getInventory() != null){
-//                int inventoryLength = this.allUsers.get(i).getInventory().size();
-//                for(int j = 0; i < inventoryLength; j++){
-//                    Item itemObject = this.allUsers.get(i).getInventory().get(j);
-//                    items += itemObject.name()+",";
-//                }
-//            }
-//            //remove last comma
-//            if(items.length() > 0){
-//                items = items.substring(0,items.length()-1);
-//            }
-//            if(i==0){
-//                String userToFile = name + "|" + balance + "|" + items;
-//                writer.write(userToFile);
-//            }
-//            else{
-//                String userToFile = "\n" + name + "|" + balance + "|" + items;
-//                writer.write(userToFile);
-//            }
-            
-            
-            //
-            //
-            //I think this works, only error would happen when writing to file
-            
-//            FileUtils.writeStringToFile(this.userFile, userToFile, 
-//                StandardCharsets.UTF_8.name());
-        //writer.close();
 
     // this method is not needed right now
     //If the user doesn’t have enough money to go to the place, you should
@@ -215,48 +157,6 @@ public class Arcade implements IArcade{
                 
             }
         }
-        
-//        if(newPlace.entryFee > currentUser.getBalance()){
-//            System.out.println("Error: not enough funds. Try Again");
-//            allPlaces.get(0).onEnter(currentUser);
-//        }
-//        else{
-//            // subtract from user balance
-//            currentUser.subtractBalance(newPlace.entryFee);
-//            try {
-//                // save changes to user to user.
-//                saveUsersToFile();
-//            } catch (IOException ex) {
-//                Logger.getLogger(Arcade.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            // enter the new place
-//            newPlace.onEnter(currentUser);
-//        }
-//        try {
-//            for(int i = 0; i< allPlaces.size(); i++){
-//                System.out.println(allPlaces.get(i).toString());
-//            }
-//            Scanner in = new Scanner(System.in);
-//            int choice = in.nextInt()-1; // subtract one for the index
-//            if(allPlaces.get(choice).entryFee > currentUser.getBalance()){
-//                System.out.println("Error: not enough funds. Try Again");
-//            // send back to lobby -> lobby must be the first item in the list
-//                allPlaces.get(0).onEnter(currentUser);
-//            }
-//            else{
-//                // subtract from user balance
-//                currentUser.subtractBalance(allPlaces.get(choice).entryFee);
-//                // save changes to user to user.
-//                // enter the new place
-//                saveUsersToFile();
-//                allPlaces.get(choice).onEnter(currentUser);
-//            }
-//            // this is implemented in Lobby onEnter
-//            
-//        } catch (IOException ex) {
-//            Logger.getLogger(Arcade.class.getName()).log(Level.SEVERE, null, ex);
-//            System.out.println("Error");
-//        }
     }
     
     /**
@@ -302,80 +202,6 @@ public class Arcade implements IArcade{
             System.out.println("Welcome to the PlayTime");
             return newUser;
         }
-
-//        List<String> allUsersFromFile = FileUtils.readLines(this.userFile,
-//                    StandardCharsets.UTF_8.name());
-//        boolean found = false;
-//        List<Item> userItems = new ArrayList<Item>();
-//        User outputUser;
-//        for(int i = 0; i< allUsersFromFile.size(); i++){
-//            String[] line = allUsersFromFile.get(i).split("|");
-//            // checking if user is in the user.txt file
-//            if(username.equals(line[0])){
-//                found = true;
-//                if(line.length > 2){
-//                    String[] itemNames = line[3].split(",");
-//                    for(int j = 0; j < itemNames.length; j++){
-//                        // checks for the item in the item class
-//                            // method return item or return null
-//                            // either way it is added to the list of Items for the user
-//                        userItems.add(Item.checkForItem(itemNames[i]));
-//                    }
-//                }
-//                else{
-//                    // user has no items
-//                    //userItems = null;
-//                }
-//                //Creates a user based on the user.txt information
-//                outputUser = new User(username, Double.parseDouble(line[1]), userItems);
-//                found = true;
-//                return outputUser;
-//            }
-//        }
-//
-//        if(found == true){
-//            System.out.println("Welcome back " + username);
-//        }
-//        else{
-//            // add user to user.txt
-//            System.out.println("How much money did you come with?");
-//            double balance = in.nextDouble();
-//            System.out.println("How many items did you bring to sell? (0,1,2,3)");
-//
-//            int numOfItems = in.nextInt();
-//            List<Item> inventory = new ArrayList<Item>();
-//            // allow the users to retype an answer
-//            if(numOfItems == 0){
-//                //userItems = null;
-//                outputUser = new User(username, balance, userItems);
-//                String userToFile = "\n" + username + "|"+balance+"|";
-//                //write user to file
-//                FileUtils.writeStringToFile(this.userFile, userToFile,
-//                StandardCharsets.UTF_8.name());
-//                System.out.println("Welcome " + username);
-//                this.allUsers.add(outputUser);
-//                return outputUser;
-//            }
-//            else{
-//                String strItemNameToFile = "";
-//                for(int i = 0; i < numOfItems; i++){
-//                    System.out.println("What is the Items name?");
-//                    String itemName = in.nextLine();
-//                    strItemNameToFile += itemName;
-//                    userItems.add(Item.checkForItem(itemName));
-//                }
-//                //write user to file
-//                String userToFile = "\n" + username + "|"+balance+"|"+strItemNameToFile;
-//                FileUtils.writeStringToFile(this.userFile, userToFile,
-//                StandardCharsets.UTF_8.name());
-//                outputUser = new User(username, balance, userItems);
-//
-//                this.allUsers.add(outputUser);
-//                System.out.println("Welcome " + username);
-//                return outputUser;
-//            }
-//        }
-//        return null; // this will not happen
     }
 
     @Override
