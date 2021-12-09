@@ -111,7 +111,6 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
             }
 
         }
-        System.out.println("hi");
         try {
             arcade.getAllPlaces().get(0).onEnter(u);
         } catch (IOException e) {
