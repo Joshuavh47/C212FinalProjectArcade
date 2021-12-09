@@ -1,5 +1,9 @@
 package edu.iu.c212.places.games.Blackjack;
 
+import edu.iu.c212.Arcade;
+import edu.iu.c212.models.User;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class BlackjackGame extends edu.iu.c212.places.games.Game {
@@ -8,11 +12,19 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
     private boolean stay=false;
     private boolean bust=false;
     private boolean bj=false;
-    public BlackjackGame(){
+    private User u=new User();
+    public BlackjackGame(String name, Arcade playTime, double cost){
+        super(name, playTime, cost);
         dealer=new BlackjackDealer();
         player=new BlackjackPlayer();
-        run();
     }
+    @Override
+    public void onEnter(User user) throws IOException {
+        u=user;
+        run();
+
+    }
+
     public void run(){
         System.out.println("Welcome to Blackjack! $20/game $50/win.");
 
@@ -160,6 +172,12 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
             }
 
         }
+        try {
+            arcade.getAllPlaces().get(0).onEnter(u);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
 }

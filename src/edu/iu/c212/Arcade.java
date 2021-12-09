@@ -6,7 +6,7 @@
 package edu.iu.c212;
 
 // importing classes
-import edu.iu.c212.BlackjackGame.Blackjack;
+import edu.iu.c212.places.games.Blackjack.BlackjackGame;
 import edu.iu.c212.models.User;
 import edu.iu.c212.models.Item;
 import edu.iu.c212.places.Inventory;
@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 
 
 import edu.iu.c212.places.Store;
+import edu.iu.c212.places.games.Blackjack.BlackjackGame;
 import edu.iu.c212.places.games.TriviaGame;
 import edu.iu.c212.places.games.hangman.HangmanGame;
 import edu.iu.c212.utils.FileUtils;
@@ -66,7 +67,7 @@ public class Arcade implements IArcade{
         Inventory inventory = new Inventory("Inventory", this, 0);
         Store store = new Store("Store", this, 0);
         HangmanGame hangman = new HangmanGame("Hangman", this, 5);
-        //Blackjack blackjack = new Blackjack("Blackjack", this, 20);
+        BlackjackGame blackjack = new BlackjackGame("Blackjack", this, 0);
         TriviaGame trivia = new TriviaGame("Trivia", this, 0);
         //GuessTheNumberGame guessNumber = new HangmanGame("Guess the Number", this, 5);
         // add all places to list
@@ -75,7 +76,7 @@ public class Arcade implements IArcade{
         this.allPlaces.add(store);
         this.allPlaces.add(inventory);
         this.allPlaces.add(hangman);
-        //this.allPlaces.add(blackjack);
+        this.allPlaces.add(blackjack);
         this.allPlaces.add(trivia);
         //this.allPlaces.add(guessNumber);
     }
