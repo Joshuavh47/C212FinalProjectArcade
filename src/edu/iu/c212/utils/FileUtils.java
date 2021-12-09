@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
-    private static File file = new File("src/edu/iu/c212/users.txt");
+    private static File file = new File("C:\\Users\\johhe\\Desktop\\C-212 Java\\C212FinalProjectArcade\\src\\edu\\iu\\c212\\users");
 
     // line format:
     // user_name|balance|item1,item2,item3
