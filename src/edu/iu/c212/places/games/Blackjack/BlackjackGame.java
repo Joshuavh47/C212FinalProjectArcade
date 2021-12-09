@@ -17,12 +17,12 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
         super(name, playTime, cost);
         dealer=new BlackjackDealer();
         player=new BlackjackPlayer();
-        run();
+
     }
     @Override
     public void onEnter(User user) throws IOException {
         u=user;
-
+        run();
 
     }
 
@@ -111,6 +111,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
             }
 
         }
+        System.out.println("hi");
         try {
             arcade.getAllPlaces().get(0).onEnter(u);
         } catch (IOException e) {
