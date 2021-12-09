@@ -48,12 +48,13 @@ public class User {
         this.balance += amount;
     }
 
-    public void addInventory(Item newItem){
+    public void addItem(Item newItem){
+        this.balance -= newItem.showPrice();
         this.inventory.add(newItem);
     }
-    public void sellItem(Item newItem, double balance){
+    public void sellItem(Item newItem){
         this.inventory.remove(newItem);
-        this.balance += balance;
+        this.balance += newItem.showPrice();
     }
     public String inventoryToString(){
         if(this.inventory.size() == 0){
