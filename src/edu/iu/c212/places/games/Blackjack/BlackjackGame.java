@@ -12,16 +12,17 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
     private boolean stay=false;
     private boolean bust=false;
     private boolean bj=false;
-    private User u = new User();
+    private User u=new User();
     public BlackjackGame(String name, Arcade playTime, double cost){
         super(name, playTime, cost);
         dealer=new BlackjackDealer();
         player=new BlackjackPlayer();
+        run();
     }
     @Override
     public void onEnter(User user) throws IOException {
         u=user;
-        run();
+
 
     }
 
