@@ -245,82 +245,82 @@ public class Arcade implements IArcade{
      */    // need to check since it kinda sucks a user can mis spell a item name
     @Override
     public User getUserOnArcadeEntry() throws IOException{
-//        Scanner in = new Scanner(System.in);
-//        System.out.println("What is your username?");
-//        String username = in.nextLine();
-//        // search user file for user
-//        List<String> allUsersFromFile = FileUtils.readLines(this.userFile,
-//                    StandardCharsets.UTF_8.name());
-//        boolean found = false;
-//        List<Item> userItems = new ArrayList<Item>();
-//        User outputUser;
-//        for(int i = 0; i< allUsersFromFile.size(); i++){
-//            String[] line = allUsersFromFile.get(i).split("|");
-//            // checking if user is in the user.txt file
-//            if(username.equals(line[0])){
-//                found = true;
-//                if(line.length > 2){
-//                    String[] itemNames = line[3].split(",");
-//                    for(int j = 0; j < itemNames.length; j++){
-//                        // checks for the item in the item class
-//                            // method return item or return null
-//                            // either way it is added to the list of Items for the user
-//                        userItems.add(Item.checkForItem(itemNames[i]));
-//                    }
-//                }
-//                else{
-//                    // user has no items
-//                    //userItems = null;
-//                }
-//                //Creates a user based on the user.txt information
-//                outputUser = new User(username, Double.parseDouble(line[1]), userItems);
-//                found = true;
-//                return outputUser;
-//            }
-//        }
-//
-//        if(found == true){
-//            System.out.println("Welcome back " + username);
-//        }
-//        else{
-//            // add user to user.txt
-//            System.out.println("How much money did you come with?");
-//            double balance = in.nextDouble();
-//            System.out.println("How many items did you bring to sell? (0,1,2,3)");
-//
-//            int numOfItems = in.nextInt();
-//            List<Item> inventory = new ArrayList<Item>();
-//            // allow the users to retype an answer
-//            if(numOfItems == 0){
-//                //userItems = null;
-//                outputUser = new User(username, balance, userItems);
-//                String userToFile = "\n" + username + "|"+balance+"|";
-//                //write user to file
-//                FileUtils.writeStringToFile(this.userFile, userToFile,
-//                StandardCharsets.UTF_8.name());
-//                System.out.println("Welcome " + username);
-//                this.allUsers.add(outputUser);
-//                return outputUser;
-//            }
-//            else{
-//                String strItemNameToFile = "";
-//                for(int i = 0; i < numOfItems; i++){
-//                    System.out.println("What is the Items name?");
-//                    String itemName = in.nextLine();
-//                    strItemNameToFile += itemName;
-//                    userItems.add(Item.checkForItem(itemName));
-//                }
-//                //write user to file
-//                String userToFile = "\n" + username + "|"+balance+"|"+strItemNameToFile;
-//                FileUtils.writeStringToFile(this.userFile, userToFile,
-//                StandardCharsets.UTF_8.name());
-//                outputUser = new User(username, balance, userItems);
-//
-//                this.allUsers.add(outputUser);
-//                System.out.println("Welcome " + username);
-//                return outputUser;
-//            }
-//        }
+        Scanner in = new Scanner(System.in);
+        System.out.println("What is your username?");
+        String username = in.nextLine();
+        // search user file for user
+        List<String> allUsersFromFile = FileUtils.readLines(this.userFile,
+                    StandardCharsets.UTF_8.name());
+        boolean found = false;
+        List<Item> userItems = new ArrayList<Item>();
+        User outputUser;
+        for(int i = 0; i< allUsersFromFile.size(); i++){
+            String[] line = allUsersFromFile.get(i).split("|");
+            // checking if user is in the user.txt file
+            if(username.equals(line[0])){
+                found = true;
+                if(line.length > 2){
+                    String[] itemNames = line[3].split(",");
+                    for(int j = 0; j < itemNames.length; j++){
+                        // checks for the item in the item class
+                            // method return item or return null
+                            // either way it is added to the list of Items for the user
+                        userItems.add(Item.checkForItem(itemNames[i]));
+                    }
+                }
+                else{
+                    // user has no items
+                    //userItems = null;
+                }
+                //Creates a user based on the user.txt information
+                outputUser = new User(username, Double.parseDouble(line[1]), userItems);
+                found = true;
+                return outputUser;
+            }
+        }
+
+        if(found == true){
+            System.out.println("Welcome back " + username);
+        }
+        else{
+            // add user to user.txt
+            System.out.println("How much money did you come with?");
+            double balance = in.nextDouble();
+            System.out.println("How many items did you bring to sell? (0,1,2,3)");
+
+            int numOfItems = in.nextInt();
+            List<Item> inventory = new ArrayList<Item>();
+            // allow the users to retype an answer
+            if(numOfItems == 0){
+                //userItems = null;
+                outputUser = new User(username, balance, userItems);
+                String userToFile = "\n" + username + "|"+balance+"|";
+                //write user to file
+                FileUtils.writeStringToFile(this.userFile, userToFile,
+                StandardCharsets.UTF_8.name());
+                System.out.println("Welcome " + username);
+                this.allUsers.add(outputUser);
+                return outputUser;
+            }
+            else{
+                String strItemNameToFile = "";
+                for(int i = 0; i < numOfItems; i++){
+                    System.out.println("What is the Items name?");
+                    String itemName = in.nextLine();
+                    strItemNameToFile += itemName;
+                    userItems.add(Item.checkForItem(itemName));
+                }
+                //write user to file
+                String userToFile = "\n" + username + "|"+balance+"|"+strItemNameToFile;
+                FileUtils.writeStringToFile(this.userFile, userToFile,
+                StandardCharsets.UTF_8.name());
+                outputUser = new User(username, balance, userItems);
+
+                this.allUsers.add(outputUser);
+                System.out.println("Welcome " + username);
+                return outputUser;
+            }
+        }
         return null; // this will not happen
     }
 
