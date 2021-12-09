@@ -23,4 +23,18 @@ public class Store extends Place{
     public void onEnter(User user) {
         
     }
+    public enum StoreAction {
+        BUY, SELL, LEAVE
+    }
+
+        @Override
+        public String toString() {
+            String output = "";
+            for (StoreAction i : StoreAction.values()) {
+                output += i.name().toLowerCase() + ",";
+            }
+            output = output.substring(0, output.length() - 1);
+            return output;
+        }
+
 }
