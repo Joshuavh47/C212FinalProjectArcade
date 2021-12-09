@@ -6,6 +6,7 @@ public class BlackjackDealer extends BlackjackParticipant {
     private boolean bust=false;
     private String shownCard;
     private int dealerBest;
+    private boolean stay=false;
     public BlackjackDealer(){
         ArrayList<String> deck=cards();
         int[] handTotals=handTotals();
@@ -18,39 +19,34 @@ public class BlackjackDealer extends BlackjackParticipant {
     public int getBestTotal() {
         int best=-1;
         int newBest=0;
-        if (cardsStringArr().size()==2){
-            if(shownCard.equals("A")){
-                best=11;
+
+        int bestAce=0;
+        for(String s:cardsStringArr()){
+            if(!s.equals("A")){
+                newBest+=cardValuesMap().get(s);
+                bestAce+=cardValuesMap().get(s);
             }
-            else {
-                best = cardValuesMap().get(shownCard);
-            }
-        }
-        else{
-            int bestAce=0;
-            for(String s:cardsStringArr()){
-                if(!s.equals("A")){
-                    newBest+=cardValuesMap().get(s);
-                    bestAce+=cardValuesMap().get(s);
-                }
-                else{
-                    newBest+=cardValuesMap().get(s);
-                    bestAce+=11;
-                }
-            }
-            if (bestAce<=21){
-                best=bestAce;
-            }
-            else if(bestAce>21&&newBest<=21){
-                best=newBest;
+            else{
+                newBest+=cardValuesMap().get(s);
+                bestAce+=11;
             }
         }
+        if (bestAce<=21){
+            best=bestAce;
+        }
+        else if(bestAce>21&&newBest<=21){
+            best=newBest;
+        }
+
         return best;
     }
     public String getPartialHand(){
         String temp="";
-        if(cardsStringArr().size()==2){
+        if(cardsStringArr().size()==2&&!stay){
             return "Dealer: ["+shownCard+"][X]";
+        }
+        else if(cardsStringArr().size()==2&&stay){
+            return "Dealer: ["+cardsStringArr().get(0)+"]["+cardsStringArr().get(1)+"]";
         }
         else{
             for(String s:cardsStringArr()){
@@ -60,9 +56,14 @@ public class BlackjackDealer extends BlackjackParticipant {
         return "Dealer: "+temp;
     }
     public void play(){
-        while(getBestTotal()<17){
+        while(getBestTotal()<17&&getBestTotal()!=-1){
             hit();
-            System.out.println(getPartialHand());
+            if(getBestTotal()!=-1) {
+                System.out.println(getPartialHand() + " " + getBestTotal());
+            }
+            else{
+                System.out.println(getPartialHand() + " Bust");
+            }
         }
         if(getBestTotal()==-1){
             System.out.println("Bust");
@@ -93,8 +94,25 @@ public class BlackjackDealer extends BlackjackParticipant {
             }
             return null;
         }
-        // JOhn added this due to error
-        return null;
+        else{
+            if(cardsStringArr().get(0).equals("A")){
+                return "(1,11)";
+            }
+            else{
+                return "("+cardValuesMap().get(cardsStringArr().get(0));
+            }
+        }
+
+    }
+    public ArrayList<String> getCards(){
+        return cardsStringArr();
+    }
+    public String printCards(){
+        String temp="Dealer: ";
+        for(String s:cardsStringArr()){
+            temp+="["+s+"]";
+        }
+        return temp;
     }
 
 }

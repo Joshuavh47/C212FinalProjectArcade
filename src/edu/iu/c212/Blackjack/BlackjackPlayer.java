@@ -9,19 +9,29 @@ public class BlackjackPlayer extends BlackjackParticipant {
         hit();
         hit();
     }
+    public String printCards(){
+        String temp="Player: ";
+        for(String s:cardsStringArr()){
+            temp+="["+s+"]";
+        }
+        return temp;
+    }
     public String getCurrentTotalsString(){
         if(handTotals()[0]!=handTotals()[1]){
-            if(handTotals()[0]<=21&&handTotals()[1]<=21){
+            if(handTotals()[0]<21&&handTotals()[1]<21){
                 return "("+handTotals()[0]+","+handTotals()[1]+")";
             }
-            else if(handTotals()[0]>21&&handTotals()[1]<=21){
+            else if(handTotals()[0]>21&&handTotals()[1]<21){
                 return "("+handTotals()[1]+")";
             }
-            else if(handTotals()[0]<=21&&handTotals()[1]>21){
+            else if(handTotals()[0]<21&&handTotals()[1]>21){
                 return "("+handTotals()[0]+")";
             }
             else if(handTotals()[0]>21&&handTotals()[1]>21){
                 return "Busted";
+            }
+            else if(handTotals()[0]==21||handTotals()[1]==21){
+                return "(21)";
             }
         }
         else{
