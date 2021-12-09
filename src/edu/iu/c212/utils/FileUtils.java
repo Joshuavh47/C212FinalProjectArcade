@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FileUtils {
 
-    private static File file = new File("src\\edu\\iu\\c212\\users");
+    private static File file = new File("src/edu/iu/c212/users");
                                         // work on making this relative
 
     // line format:

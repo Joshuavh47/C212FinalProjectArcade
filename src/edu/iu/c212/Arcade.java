@@ -67,7 +67,7 @@ public class Arcade implements IArcade{
         Inventory inventory = new Inventory("Inventory", this, 0);
         Store store = new Store("Store", this, 0);
         HangmanGame hangman = new HangmanGame("Hangman", this, 5);
-        BlackjackGame blackjack = new BlackjackGame("Blackjack", this, 0);
+        BlackjackGame blackjack = new BlackjackGame("Blackjack", this, 20);
         TriviaGame trivia = new TriviaGame("Trivia", this, 0);
         //GuessTheNumberGame guessNumber = new HangmanGame("Guess the Number", this, 5);
         // add all places to list

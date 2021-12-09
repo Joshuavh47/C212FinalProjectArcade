@@ -17,27 +17,21 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
         super(name, playTime, cost);
         dealer=new BlackjackDealer();
         player=new BlackjackPlayer();
+        run();
     }
     @Override
     public void onEnter(User user) throws IOException {
         u=user;
-        run();
+
 
     }
 
     public void run(){
-        System.out.println("Welcome to Blackjack! $20/game $50/win.");
+        System.out.println("Welcome to Blackjack! $20/game $50/win $70/blackjack.");
 
-        System.out.print("Type \"play\" to play, or \"back\" to go back: ");
         Scanner scan = new Scanner(System.in);
-        String play = scan.nextLine();
-        if(play.equalsIgnoreCase("back")){
-            //menu();
-        }
-        while(!play.equalsIgnoreCase("play")&&!play.equalsIgnoreCase("back")){
-            System.out.print("Type \"play\" to play, or \"back\" to go back: ");
-            play = scan.nextLine();
-        }
+        String play="";
+
         if(dealer.cardsStringArr().get(0).equals("A")) {
             System.out.println(dealer.getPartialHand() + " (1,11)    " + player.printCards() + " " + player.getCurrentTotalsString());
         }
@@ -59,14 +53,19 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
         }
 
         while(!stay&&!bust&&!bj){
-            System.out.println(dealer.printCards()+" "+dealer.getBestTotal()+"    "+player.printCards()+" "+player.getCurrentTotalsString());
+            if(dealer.cardsStringArr().get(0).equals("A")&&!stay&&!bust&&!bj) {
+                System.out.println(dealer.getPartialHand() + " (1,11)    " + player.printCards() + " " + player.getCurrentTotalsString());
+            }
+            else if(!dealer.cardsStringArr().get(0).equals("A")&&!stay&&!bust&&!bj){
+                System.out.println(dealer.getPartialHand() + " (" + dealer.cardValuesMap().get(dealer.getCards().get(0)) + ")    " + player.printCards() + " " + player.getCurrentTotalsString());
+            }
             if(player.getCurrentTotalsString().equals("(21)")){
                 bj=true;
             }
             if(player.getCurrentTotalsString().equals("Busted")){
                 bust=true;
             }
-            while(!play.equalsIgnoreCase("hit")&&!play.equalsIgnoreCase("stay")&&!bust) {
+            while(!play.equalsIgnoreCase("hit")&&!play.equalsIgnoreCase("stay")&&!bust&&!bj) {
                 System.out.print("Hit or stay: ");
                 play=scan.nextLine();
                 System.out.println();
@@ -82,92 +81,32 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
 
         }
         if(bj){
-            System.out.println("Blackjack! You win!");
-            while(!play.equalsIgnoreCase("yes")&&!play.equalsIgnoreCase("no")) {
-                System.out.print("Play again? (Yes/No): ");
-                play=scan.nextLine();
-                System.out.println();
-            }
-            if(play.equalsIgnoreCase("yes")){
-                new BlackjackGame();
-            }
-            else if(play.equalsIgnoreCase("no")){
-                //menu();
-            }
+            System.out.println("Blackjack! You win $70!");
+            u.addBalance(90.0);
         }
         if(bust){
 
-            System.out.println("You lose!");
-            while(!play.equalsIgnoreCase("yes")&&!play.equalsIgnoreCase("no")) {
-                System.out.print("Play again? (Yes/No): ");
-                play=scan.nextLine();
-                System.out.println();
-            }
-            if(play.equalsIgnoreCase("yes")){
-                new BlackjackGame();
-            }
-            else if(play.equalsIgnoreCase("no")){
-                //menu();
-            }
+            System.out.println("You lose! Try again!");
+
         }
         if(stay){
             dealer.play();
             if(dealer.busted()){
-                System.out.println("You win, dealer went bust!");
-                while(!play.equalsIgnoreCase("yes")&&!play.equalsIgnoreCase("no")){
-                    System.out.print("Play again? (Yes/No): ");
-                    play=scan.nextLine();
-                    System.out.println();
-                }
-                if(play.equalsIgnoreCase("yes")){
-                    new BlackjackGame();
-                }
-                else if(play.equalsIgnoreCase("no")){
-                    //menu();
-                }
+                System.out.println("You win $50, dealer went bust!");
+                u.addBalance(70.0);
             }
             else{
                 if(dealer.getBestTotal()>player.getBestTotal()){
-                    System.out.println("You lose!");
-                    while(!play.equalsIgnoreCase("yes")&&!play.equalsIgnoreCase("no")) {
-                        System.out.print("Play again? (Yes/No): ");
-                        play=scan.nextLine();
-                        System.out.println();
-                    }
-                    if(play.equalsIgnoreCase("yes")){
-                        new BlackjackGame();
-                    }
-                    else if(play.equalsIgnoreCase("no")){
-                        //menu();
-                    }
+                    System.out.println("You lose! Try again!");
+
                 }
                 else if(dealer.getBestTotal()<player.getBestTotal()){
-                    System.out.println("You win!");
-                    while(!play.equalsIgnoreCase("yes")&&!play.equalsIgnoreCase("no")) {
-                        System.out.print("Play again? (Yes/No): ");
-                        play=scan.nextLine();
-                        System.out.println();
-                    }
-                    if(play.equalsIgnoreCase("yes")){
-                        new BlackjackGame();
-                    }
-                    else if(play.equalsIgnoreCase("no")){
-                        //menu();
-                    }
+                    System.out.println("You win $50!");
+                    u.addBalance(70.0);
                 }
                 else{
-                    System.out.println("You tied with the dealer!");
-                    while(!play.equalsIgnoreCase("yes")&&!play.equalsIgnoreCase("no")) {
-                        System.out.print("Play again? (Yes/No): ");
-                        play=scan.nextLine();
-                        System.out.println();
-                    }
-                    if(play.equalsIgnoreCase("yes")){
-                        new BlackjackGame();
-                    }
-                    else if(play.equalsIgnoreCase("no")){
-                        //menu();
-                    }
+                    System.out.println("You tied with the dealer! Your original bet has been returned");
+                    u.addBalance(20.0);
                 }
             }
 
