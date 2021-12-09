@@ -1,8 +1,8 @@
-package edu.iu.c212.Blackjack;
+package edu.iu.c212.places.games.Blackjack;
 
 import java.util.Scanner;
 
-public class BlackjackGame extends Game {
+public class BlackjackGame extends edu.iu.c212.places.games.Game {
     private BlackjackDealer dealer;
     private BlackjackPlayer player;
     private boolean stay=false;

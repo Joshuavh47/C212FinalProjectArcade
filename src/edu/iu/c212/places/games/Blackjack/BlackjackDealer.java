@@ -1,4 +1,4 @@
-package edu.iu.c212.Blackjack;
+package edu.iu.c212.places.games.Blackjack;
 
 import java.util.ArrayList;
 
