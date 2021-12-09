@@ -48,6 +48,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
             play="";
         }
         else if(play.equalsIgnoreCase("stay")){
+            stay=true;
             dealer.play();
 
         }
@@ -77,6 +78,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
 
             else if(play.equalsIgnoreCase("stay")){
                 stay=true;
+                dealer.play();
             }
 
         }
