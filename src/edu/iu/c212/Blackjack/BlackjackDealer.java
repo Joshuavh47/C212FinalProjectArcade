@@ -93,7 +93,8 @@ public class BlackjackDealer extends BlackjackParticipant {
             }
             return null;
         }
-
+        // JOhn added this due to error
+        return null;
     }
 
 }
