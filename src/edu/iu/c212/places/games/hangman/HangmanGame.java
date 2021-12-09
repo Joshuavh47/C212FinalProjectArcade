@@ -23,8 +23,17 @@ import java.util.*;
 public class HangmanGame extends Game implements IHangmanGame{
 
     List<Character> letters;
-    String word; //HttpUtils.getRandomHangmanWord;
-    User player;
+    String word;
+
+    {
+        try {
+            word = HttpUtils.getRandomHangmanWord();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    User player = new User();
     List<Character> guesses;
     int numWrongGuesses = 0;
     //Arcade arcade;
@@ -41,8 +50,9 @@ public class HangmanGame extends Game implements IHangmanGame{
     }
     @Override
     public void onEnter(User user) throws IOException {
+        this.player = user;
+        //word = HangmanWord.getWord();
 
-        word = HttpUtils.getRandomHangmanWord();
         //User player = new User("John-Herron",100,null);
         // get hangman game from arcade list of places
         int indexOfGame = arcade.findPlace("Hangman");
@@ -75,10 +85,11 @@ public class HangmanGame extends Game implements IHangmanGame{
             }
             // check if guess was from the guess list
             game1.validGuess(guess.charAt(0));
-            // add guess to list of guesses
-            game1.addGuess(guess.charAt(0));
             // update number of incorrect guesses
             game1.checkGuess(guess.charAt(0));
+            // add guess to list of guesses
+            game1.addGuess(guess.charAt(0));
+
             if(game1.winner()){
                 System.out.println("Congrats, you won with " + game1.getNumGuesses() + " incorrect guesses! You got $15");
                 System.out.println("========");
@@ -138,15 +149,27 @@ public class HangmanGame extends Game implements IHangmanGame{
     }
 
     void checkGuess(char s){
-        boolean goodGuess = false;
-        for(int i = 0; i <this.word.length();i++){
-            if(this.word.charAt(i) == s){
-                goodGuess = true;
+        boolean done = false;
+        for(int i = 0; i < this.guesses.size(); i++){
+            char letter = guesses.get(i);
+            if(letter == s){
+                this.numWrongGuesses += 1;
+                done = true;
                 break;
             }
         }
-        if(goodGuess == false){
-            this.numWrongGuesses += 1;
+        // runs if guess was not previously guessed
+        if(done == false){
+            boolean goodGuess = false;
+            for(int i = 0; i <this.word.length();i++){
+                if(this.word.charAt(i) == s){
+                    goodGuess = true;
+                    break;
+                }
+            }
+            if(goodGuess == false){
+                this.numWrongGuesses += 1;
+            }
         }
     }
 
