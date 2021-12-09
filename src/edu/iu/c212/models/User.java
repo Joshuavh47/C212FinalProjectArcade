@@ -62,7 +62,7 @@ public class User {
         else{
             String inv = "";
             for(int i = 0; i < this.inventory.size(); i++){
-                inv += Item.valueOf(inventory.get(i).readableName);
+                inv += inventory.get(i).name();
                 inv += ",";
             }
             inv = inv.substring(0,inv.length()-1);

@@ -35,14 +35,14 @@ public enum Item {
     public double showPrice(){
         return this.value;
     }
-    @Override public String toString(){
-        String allItems = "[";
-        for(Item i: Item.values()){
-            allItems += "["+i.readableName + ", "+i.value+"]";
-        }
-        allItems += "]";
-        return allItems;
-    }
+//    @Override public String toString(){
+//        String allItems = "[";
+//        for(Item i: Item.values()){
+//            allItems += "["+i.readableName + ", "+i.value+"]";
+//        }
+//        allItems += "]";
+//        return allItems;
+//    }
     // user could misspell an item name
     public static Item checkForItem(String item){
         for(Item i: Item.values()){

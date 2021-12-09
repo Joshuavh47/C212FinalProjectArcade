@@ -14,7 +14,13 @@ import edu.iu.c212.models.User;
  * @author johhe
  */
 public class Store extends Place{
-    
+    public enum StoreAction {
+        BUY, SELL, LEAVE;
+        @Override
+        public String toString() {
+          return this.name().toLowerCase();
+        }
+    }
     public Store(String name, Arcade playTime, double cost) {
         super(name, playTime, cost);
     }
@@ -23,18 +29,8 @@ public class Store extends Place{
     public void onEnter(User user) {
         
     }
-    public enum StoreAction {
-        BUY, SELL, LEAVE
-    }
 
-        @Override
-        public String toString() {
-            String output = "";
-            for (StoreAction i : StoreAction.values()) {
-                output += i.name().toLowerCase() + ",";
-            }
-            output = output.substring(0, output.length() - 1);
-            return output;
-        }
+
+
 
 }

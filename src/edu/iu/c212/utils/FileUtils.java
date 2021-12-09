@@ -56,6 +56,7 @@ public class FileUtils {
                 for (int i = 0; i < splitItems.length; i++) {
                     userItems.add(Item.valueOf(splitItems[i]));
                 }
+                allUsers.add(new User(name, balance, userItems));
             }
         }
         read.close();

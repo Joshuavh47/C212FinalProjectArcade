@@ -206,6 +206,7 @@ public class Arcade implements IArcade{
                         // save changes to user to user.txt
                         saveUsersToFile();
                     } catch (IOException ex) {
+                        ex.printStackTrace();
                         Logger.getLogger(Arcade.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 // enter the new place
