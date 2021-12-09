@@ -17,12 +17,12 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
         super(name, playTime, cost);
         dealer=new BlackjackDealer();
         player=new BlackjackPlayer();
-        run();
+
     }
     @Override
     public void onEnter(User user) throws IOException {
         u=user;
-
+        run();
 
     }
 
