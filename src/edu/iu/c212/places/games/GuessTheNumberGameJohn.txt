@@ -6,6 +6,7 @@ import edu.iu.c212.places.Place;
 import edu.iu.c212.utils.ConsoleUtils;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.function.Function;
 
 public class GuessTheNumberGame extends Game{
@@ -13,7 +14,10 @@ public class GuessTheNumberGame extends Game{
     int result=0;
     User player;
     String failureMessage = "Whats your guess?";//"Oh no, you didn't guess correctly\n";
-    int randomNum = (int) (Math.random() * (5));
+    Random ran = new Random();
+    // random number between 1 - 100
+    int randomNum = ran.nextInt(100) + 1;
+    //int randomNum = (int) (Math.random() * (5));
 
     public GuessTheNumberGame(String lobby, Arcade playTime, double cost) {
         super(lobby, playTime, cost);
@@ -26,7 +30,7 @@ public class GuessTheNumberGame extends Game{
         Place game = arcade.allPlaces.get(indexOfGame);
         GuessTheNumberGame gn = new GuessTheNumberGame(game.placeName, game.arcade, game.entryFee);
 
-        System.out.println("Welcome to Guess The Number. You'll be guessing a number between 0 and 200");
+        System.out.println("Welcome to Guess The Number. You'll be guessing a number between 0 and 100");
         System.out.println("You'll get $10 if you correctly guess the number within 5 tries. Otherwise, you get nothing");
         System.out.println("Whats you guess");
         Function<Integer, Boolean> condition = integer -> {
