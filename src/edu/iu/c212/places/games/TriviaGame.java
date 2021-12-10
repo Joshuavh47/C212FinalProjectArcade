@@ -20,7 +20,6 @@ public class TriviaGame extends Game {
     TriviaQuestion triviaQuestion;
     TriviaResponse triviaResponse;
     List<TriviaQuestion> questions;
-
     {
         try {
             questions = HttpUtils.getTriviaQuestions(5);
