@@ -74,8 +74,9 @@ public class Arcade implements IArcade{
         this.allPlaces.add(store);
         this.allPlaces.add(inventory);
         this.allPlaces.add(hangman);
-        //this.allPlaces.add(blackjack);
         this.allPlaces.add(trivia);
+        //this.allPlaces.add(blackjack);
+
         //this.allPlaces.add(guessNumber);
     }
     // return index

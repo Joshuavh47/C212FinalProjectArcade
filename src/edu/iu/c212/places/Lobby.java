@@ -27,7 +27,7 @@ public class Lobby extends Place{
     @Override
     public void onEnter(User user) throws IOException {
         String title = "Welcome to the C212 arcade, " + user.getUsername() + "! You're currently in the lobby. " + "Your balance is: " + user.getBalance() + ". Where do you want to go next?";
-        arcade.initializeAllPlaces();
+        //arcade.initializeAllPlaces();
         User player = user;
         List<Place> allPlaces = this.arcade.getAllPlaces();
         //add
