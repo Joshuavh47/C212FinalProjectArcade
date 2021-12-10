@@ -9,6 +9,7 @@ import edu.iu.c212.utils.http.TriviaQuestion;
 import edu.iu.c212.utils.http.TriviaResponse;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 public class TriviaGame extends Game {
@@ -39,42 +40,64 @@ public class TriviaGame extends Game {
         int indexOfGame = arcade.findPlace("Trivia");
         Place game = arcade.allPlaces.get(indexOfGame);
         TriviaGame triviaGame = new TriviaGame(game.placeName, game.arcade, game.entryFee);
-        System.out.println(triviaGame.questions.get(0));
 //        int count = 1;
 //        int numOfQuestions = 5;
         System.out.println("Welcome to C212 trivia. You get $2 for every correct answer - there are 5 total questions in this trivia round");
         for (int i = 0; i < numOfQuestions; i++) {//for loop to print questions
+
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            try {
+            List<String> resp = questions.get(i).getIncorrectAnswers();
+            System.out.println(questions.get(i).getQuestion());
+            resp.add(questions.get(i).getCorrectAnswer());
+            Collections.shuffle(resp);
+            ConsoleUtils.printMenuToConsole("You're on question" + count + " Ready?",resp, true);
 
-                List<TriviaQuestion> questions = HttpUtils.getTriviaQuestions(5);
-                ConsoleUtils.printMenuToConsole("You're on question" + count + " Ready?",questions, true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
             //print question
             //print shuffled respondces
         }
     }
-//
+
 //    public static void main(String[] args) {
+//        List<TriviaQuestion> questions = null;
 //        try {
-//            int count = 1;
+//            questions = HttpUtils.getTriviaQuestions(5);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        int numOfQuestions = 5;
+//        for (int i = 0; i < numOfQuestions; i++) {//for loop to print questions
+//
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            List<String> resp = questions.get(i).getIncorrectAnswers();
+//            System.out.println(questions.get(i).getQuestion());
+//            resp.add(questions.get(i).getCorrectAnswer());
+//            Collections.shuffle(resp);
+//            ConsoleUtils.printMenuToConsole("You're on question" + i + " Ready?", resp, true);
+
+//        try {
+//              int count = 1;
 //            List<TriviaQuestion> questions = HttpUtils.getTriviaQuestions(5);
-//            String a = questions.get(1).getQuestion();
-//            List<String> r = questions.get(1).getIncorrectAnswers();
-//            r.add(questions.get(1).getCorrectAnswer());
+//            List<String> r = questions.get(0).getIncorrectAnswers();
+//            System.out.println(questions.get(0).getQuestion());
+//            r.add(questions.get(0).getCorrectAnswer());
+//            Collections.shuffle(r);
+//            System.out.println("Answer");
+//            System.out.println(questions.get(0).getCorrectAnswer());
 //            System.out.println(r);
 //            List<String> questions1;
-//            System.out.println(a);
-//            //ConsoleUtils.printMenuToConsole("You're on question " + count + " Ready?",a, true);
+//            ConsoleUtils.printMenuToConsole("You're on question " + count + " Ready?",r, true);
 //
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//    }
-}
+        }
+    }}
