@@ -23,6 +23,7 @@ import java.util.*;
 public class ArcadeMain {
     public static void main(String[] args) throws IOException {
         // handles the arcade
+
         Arcade playTime = new Arcade();
         //User player = playTime.currentUser;
         // all places are initialized in -> initializeAllPlaces

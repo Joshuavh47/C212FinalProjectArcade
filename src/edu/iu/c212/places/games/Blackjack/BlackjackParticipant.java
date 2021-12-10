@@ -1,4 +1,4 @@
-package edu.iu.c212.Blackjack;
+package edu.iu.c212.places.games.Blackjack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,7 +86,7 @@ public abstract class BlackjackParticipant {
 
         if(!card.equals("A")){
             totalValue[0]+=cardValuesMap().get(card);
-            totalValue[1]+=totalValue[0]+=cardValuesMap().get(card);
+            totalValue[1]+=cardValuesMap().get(card);
         }
         else{
             totalValue[0]+=1;
@@ -107,7 +107,6 @@ public abstract class BlackjackParticipant {
     public void hit(){
         Random rand = new Random();
         int rInt = rand.nextInt(cards().size());
-        String cardPicked="";
         if(!cards().get(rInt).equals("A")){
             handTotals(cards().get(rInt));
             cardsStringArr(cards().get(rInt));

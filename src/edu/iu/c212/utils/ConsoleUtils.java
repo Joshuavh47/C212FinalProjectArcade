@@ -24,6 +24,10 @@ public class ConsoleUtils {
     public static int readIntegerLineFromConsoleOrElseComplainAndRetry(Function<Integer, Boolean> condition, String failureMessage) {
         String num = readLineFromConsole();
         int num1 = Integer.parseInt(num);
+//        if (num1 == 6) {
+//            System.exit(0);
+//        }
+        //else
         if(!condition.apply(num1)){
             System.out.println(failureMessage);
             readIntegerLineFromConsoleOrElseComplainAndRetry(condition,failureMessage);
@@ -43,6 +47,7 @@ public class ConsoleUtils {
         System.out.println("=========");
         System.out.println(menuTitle);
         for (int i = 0; i < options.size(); i++) System.out.println("" + (i + 1) + ": " + options.get(i));
+        //System.out.println("6: leave the arcade");
         System.out.println("=========");
 
         if (shouldUserSelectAnOption) {
