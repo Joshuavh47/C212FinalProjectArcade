@@ -26,7 +26,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
 
     }
 
-    public void run(){
+    public void run() throws IOException {
         System.out.println("Welcome to Blackjack! $20/game $50/win $70/blackjack.");
 
         Scanner scan = new Scanner(System.in);
@@ -99,6 +99,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
             if(dealer.busted()){
                 System.out.println("You win $50, dealer went bust!");
                 u.addBalance(70.0);
+
             }
             else{
                 if(dealer.getBestTotal()>player.getBestTotal()){
@@ -117,6 +118,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
             }
 
         }
+        arcade.saveUsersToFile();
         try {
             arcade.getAllPlaces().get(0).onEnter(u);
         } catch (IOException e) {
