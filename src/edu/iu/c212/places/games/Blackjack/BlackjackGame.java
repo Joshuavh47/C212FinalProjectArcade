@@ -38,7 +38,10 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
         else{
             System.out.println(dealer.getPartialHand() + " (" + dealer.cardValuesMap().get(dealer.getCards().get(0)) + ")    " + player.printCards() + " " + player.getCurrentTotalsString());
         }
-        while(!play.equalsIgnoreCase("hit")&&!play.equalsIgnoreCase("stay")) {
+        if(player.getCurrentTotalsString().equals("(21)")&&player.cardsStringArr().size()==2){
+            bj=true;
+        }
+        while(!play.equalsIgnoreCase("hit")&&!play.equalsIgnoreCase("stay")&&!bj) {
             System.out.print("Hit or stay: ");
             play=scan.nextLine();
             System.out.println();
@@ -60,7 +63,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
             else if(!dealer.cardsStringArr().get(0).equals("A")&&!stay&&!bust&&!bj){
                 System.out.println(dealer.getPartialHand() + " (" + dealer.cardValuesMap().get(dealer.getCards().get(0)) + ")    " + player.printCards() + " " + player.getCurrentTotalsString());
             }
-            if(player.getCurrentTotalsString().equals("(21)")){
+            if(player.getCurrentTotalsString().equals("(21)")&&player.cardsStringArr().size()==2){
                 bj=true;
             }
             if(player.getCurrentTotalsString().equals("Busted")){
