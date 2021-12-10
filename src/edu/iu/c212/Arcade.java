@@ -63,6 +63,7 @@ public class Arcade implements IArcade{
     public void initializeAllPlaces(){
 
         // 4 games, lobby, inventory, store
+        allPlaces.clear();
         Lobby lobby = new Lobby("Lobby", this, 0);
         Inventory inventory = new Inventory("Inventory", this, 0);
         Store store = new Store("Store", this, 0);
