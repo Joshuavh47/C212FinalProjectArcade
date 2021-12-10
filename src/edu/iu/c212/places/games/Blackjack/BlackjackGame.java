@@ -41,9 +41,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
         if(player.getCurrentTotalsString().equals("(21)")&&player.cardsStringArr().size()==2){
             bj=true;
         }
-        if(player.getCurrentTotalsString().equals("(21)")){
-            stay=true;
-        }
+
         while(!play.equalsIgnoreCase("hit")&&!play.equalsIgnoreCase("stay")&&!bj) {
             System.out.print("Hit or stay: ");
             play=scan.nextLine();
@@ -68,6 +66,9 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
             }
             if(player.getCurrentTotalsString().equals("(21)")&&player.cardsStringArr().size()==2){
                 bj=true;
+            }
+            if(player.getCurrentTotalsString().equals("(21)")){
+                stay=true;
             }
             if(player.getCurrentTotalsString().equals("Busted")){
                 bust=true;
