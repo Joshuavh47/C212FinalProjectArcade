@@ -35,6 +35,7 @@ public class TriviaGame extends Game {
 
     @Override
     public void onEnter(User user) {
+        this.player = user;
         System.out.println("Welcome to C212 trivia. You get $2 for every correct answer - there are 5 total questions in this trivia round");
         for (int i = 0; i < numOfQuestions; i++) {//for loop to print questions
             List<String> resp = questions.get(i).getIncorrectAnswers();//adds incorrect res to list
@@ -72,7 +73,8 @@ public class TriviaGame extends Game {
             System.out.println("Returning to lobby...");
             try {
                 Thread.sleep(4000);
-                arcade.allPlaces.get(0).onEnter(player);
+                arcade.getAllPlaces().get(0).onEnter(player);
+                System.out.println("Fail");
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
