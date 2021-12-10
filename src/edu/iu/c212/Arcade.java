@@ -27,6 +27,8 @@ import java.util.logging.Logger;
 
 
 import edu.iu.c212.places.Store;
+import edu.iu.c212.places.games.Blackjack.BlackjackGame;
+import edu.iu.c212.places.games.GuessTheNumberGame;
 import edu.iu.c212.places.games.TriviaGame;
 import edu.iu.c212.places.games.hangman.HangmanGame;
 import edu.iu.c212.utils.FileUtils;
@@ -65,19 +67,19 @@ public class Arcade implements IArcade{
         Inventory inventory = new Inventory("Inventory", this, 0);
         Store store = new Store("Store", this, 0);
         HangmanGame hangman = new HangmanGame("Hangman", this, 5);
-        //Blackjack blackjack = new HangmanGame("Blackjack", this, 20);
+        BlackjackGame blackjack = new BlackjackGame("Blackjack", this, 20);
         TriviaGame trivia = new TriviaGame("Trivia", this, 0);
+        GuessTheNumberGame guessNumber = new GuessTheNumberGame("Guess The Number Game",this,5);
         //GuessTheNumberGame guessNumber = new HangmanGame("Guess the Number", this, 5);
         // add all places to list
 
         this.allPlaces.add(lobby);
-        this.allPlaces.add(store);
-        this.allPlaces.add(inventory);
+        this.allPlaces.add(guessNumber);
+        this.allPlaces.add(blackjack);
         this.allPlaces.add(hangman);
         this.allPlaces.add(trivia);
-        //this.allPlaces.add(blackjack);
-
-        //this.allPlaces.add(guessNumber);
+        this.allPlaces.add(store);
+        this.allPlaces.add(inventory);
     }
     // return index
     public int findPlace(String nameOfPlace){
