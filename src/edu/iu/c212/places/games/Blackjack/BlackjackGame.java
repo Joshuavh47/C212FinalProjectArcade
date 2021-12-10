@@ -102,6 +102,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
             }
             else{
                 if(dealer.getBestTotal()>player.getBestTotal()){
+                    System.out.println(dealer.printCards()+" "+dealer.getBestTotalString());
                     System.out.println("You lose! Try again!");
 
                 }
