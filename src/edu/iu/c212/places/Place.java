@@ -10,6 +10,8 @@ import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -30,7 +32,12 @@ public abstract class Place {
     @Override
     public String toString(){
         boolean game = true;
-        if(entryFee == 0){
+        List<String> nonGames = new ArrayList<>();
+        nonGames.add("Lobby");
+        nonGames.add("Inventory");
+        nonGames.add("Store");
+        // check for game
+        if(nonGames.contains(this.placeName)){
             game = false;
         }
         String output = (this.placeName + "(cost: " +this.entryFee + "). Game? " + game);
