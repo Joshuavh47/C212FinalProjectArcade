@@ -13,10 +13,9 @@ import java.util.function.Function;
 
 public class GuessTheNumberGame extends Game{
     int count = 0;
-    int result=0;
     User player;
-    String failureMessage = "Oh no, you didn't guess correctly\n";
-    int randomNum = (int) (Math.random() * (5));
+    String failureMessage = "What's your guess?";
+    int randomNum = (int) (Math.random() * (200));
 
     public GuessTheNumberGame(String lobby, Arcade playTime, double cost) {
         super(lobby, playTime, cost);
@@ -31,40 +30,33 @@ public class GuessTheNumberGame extends Game{
 
         System.out.println("Welcome to Guess The Number. You'll be guessing a number between 0 and 200");
         System.out.println("You'll get $10 if you correctly guess the number within 5 tries. Otherwise, you get nothing");
+        System.out.println(failureMessage);
 
-        while(result == 0) {
-            System.out.println("What's your guess?");
-            Function<Integer, Boolean> condition = integer -> {
+        Function<Integer, Boolean> condition = integer -> {
+            if (count < 4) {
                 count++;
                 if (integer == randomNum) {
-                    result = 1;
                     System.out.println("Congratulations, you correctly guessed the number!");
+                    System.out.println("You guessed it within 5 tries, so you get $10");
+                    player.addBalance(10.00);
                     return true;
                 } else {
+                    System.out.println("Oh no, you didn't guess correctly.");
+                    if (integer > randomNum) System.out.println("Your number was too high");
+                    else System.out.println("Your number was too low");
                     return false;
                 }
-            };
-            ConsoleUtils.readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
-        }
-        if(count<5){
-            System.out.println("You guessed it within 5 tries, so you get $10");
-            player.addBalance(10.00);
-            arcade.saveUsersToFile();
-        }
-            else System.out.println("You took more than 5 tries, so you get nothing");
+            }
+            else {
+                System.out.println("Oh no, you didn't guess correctly.");
+                System.out.println("You were unable to guess the number in 5 tries, so you get nothing");
+                return true;
+            }
+        };
+        ConsoleUtils.readIntegerLineFromConsoleOrElseComplainAndRetry(condition,failureMessage);
+        arcade.saveUsersToFile();
+        arcade.getAllPlaces().get(0).onEnter(user);
 
-        arcade.allPlaces.get(0).onEnter(player);
         }
 
-//    public static void main(String[] args) throws IOException{
-//        Arcade a = new Arcade();
-//        User player = a.currentUser;
-//        GuessTheNumberGame guessNumber = new GuessTheNumberGame("Guessthenumber", a, 5);
-//        Lobby lobby = new Lobby("Lobby", a, 0);
-//        List allPlaces = new ArrayList<Place>();
-//        allPlaces.add(guessNumber);
-//        allPlaces.add(lobby);
-//        a.addAllPlaces(allPlaces);
-//        guessNumber.onEnter(player);
-//    }
 }
