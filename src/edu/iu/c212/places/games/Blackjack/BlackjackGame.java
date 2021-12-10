@@ -116,6 +116,7 @@ public class BlackjackGame extends edu.iu.c212.places.games.Game {
                     u.addBalance(70.0);
                 }
                 else{
+                    System.out.println(dealer.printCards()+" "+dealer.getBestTotalString());
                     System.out.println("You tied with the dealer! Your original bet has been returned");
                     u.addBalance(20.0);
                 }
