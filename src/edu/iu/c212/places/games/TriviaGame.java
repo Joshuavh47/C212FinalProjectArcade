@@ -72,6 +72,11 @@ public class TriviaGame extends Game {
             System.out.println("Aww, good try. You got "+count+" questions right.");
             System.out.println("Returning to lobby...");
             try {
+                arcade.saveUsersToFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
                 Thread.sleep(4000);
                 arcade.getAllPlaces().get(0).onEnter(player);
                 System.out.println("Fail");
