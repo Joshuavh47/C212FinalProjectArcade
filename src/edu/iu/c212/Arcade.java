@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 
 import edu.iu.c212.places.Store;
+import edu.iu.c212.places.games.TriviaGame;
 import edu.iu.c212.places.games.hangman.HangmanGame;
 import edu.iu.c212.utils.FileUtils;
 
@@ -65,7 +66,7 @@ public class Arcade implements IArcade{
         Store store = new Store("Store", this, 0);
         HangmanGame hangman = new HangmanGame("Hangman", this, 5);
         //Blackjack blackjack = new HangmanGame("Blackjack", this, 20);
-        //TriviaGame trivia = new HangmanGame("Trivia", this, 0);
+        TriviaGame trivia = new TriviaGame("Trivia", this, 0);
         //GuessTheNumberGame guessNumber = new HangmanGame("Guess the Number", this, 5);
         // add all places to list
 
@@ -74,7 +75,7 @@ public class Arcade implements IArcade{
         this.allPlaces.add(inventory);
         this.allPlaces.add(hangman);
         //this.allPlaces.add(blackjack);
-        //this.allPlaces.add(trivia);
+        this.allPlaces.add(trivia);
         //this.allPlaces.add(guessNumber);
     }
     // return index
